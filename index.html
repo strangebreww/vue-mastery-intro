@@ -29,12 +29,15 @@
             <ul>
               <li v-for="detail in details">{{ detail }}</li>
             </ul>
-            <div v-for="variant in variants" :key="variant.id">{{ variant.color }}</div>
+            <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">{{ variant.color }}</div>
             <ul>
               <li v-for="(size, index) in sizes" :key="index">{{ size }}</li>
             </ul>
+            <div class="buttons-container">
+              <button class="button" v-on:click="addToCart">Add to cart</button>
+              <button class="button" @click="removeFromCart">Remove item</button>
+            </div>
             <a :href="url">Vue Mastery</a>
-            <button class="button">Add to Cart</button>
           </div>
         </div>
       </div>
