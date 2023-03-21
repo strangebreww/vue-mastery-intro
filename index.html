@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Vue Mastery</title>
-    <!-- Import Styles -->
+    <!-- Import styles -->
     <link rel="stylesheet" href="./assets/styles.css" />
     <!-- Import Vue.js -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -11,53 +11,15 @@
   <body>
     <div id="app">
       <div class="nav-bar"></div>
-
       <div class="cart">Cart({{ cart }})</div>
-      
-      <div class="product-display">
-        <div class="product-container">
-          <div class="product-image">
-            <img v-bind:src="image" :class="{ 'out-of-stock-img': !inventory }">
-          </div>
-          <div class="product-info">
-            <h1>{{ title }}</h1>
-            <p>{{ description }}</p>
-            <p v-show="onSale">{{ saleMessage }}</p>
-            <p v-if="inventory > 10">In stock</p>
-            <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out</p>
-            <p v-else>Out of stock</p>
-            <ul>
-              <li v-for="detail in details">{{ detail }}</li>
-            </ul>
-            <div
-              v-for="(variant, index) in variants"
-              :key="variant.id"
-              @mouseover="updateVariant(index)"
-              class="color-circle"
-              :style="{ backgroundColor: variant.color }"
-            ></div>
-            <ul>
-              <li v-for="(size, index) in sizes" :key="index">{{ size }}</li>
-            </ul>
-            <div class="buttons-container">
-              <button
-                class="button"
-                :class="{ disabledButton: !inventory }"
-                :disabled="!inventory"
-                v-on:click="addToCart">
-                Add to cart
-              </button>
-              <button class="button" @click="removeFromCart">Remove item</button>
-            </div>
-            <a :href="url">Vue Mastery</a>
-          </div>
-        </div>
-      </div>
+      <product-display :premium="premium"></product-display>
     </div>
-
-    <!-- Import App -->
+    <!-- Import app -->
     <script src="./main.js"></script>
-    <!-- Mount App -->
+    <!-- Import components -->
+    <script src="./components/ProductDisplay.js"></script>
+    <script src="./components/ProductDetails.js"></script>
+    <!-- Mount app -->
     <script>
       const mountedApp = app.mount("#app");
     </script>
